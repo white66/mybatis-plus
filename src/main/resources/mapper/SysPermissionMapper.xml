@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtst.mybatisplus.repository.SysPermissionMapper">
+
+    <select id="selectPermissionByRoleIds" resultType="java.lang.String">
+        select p.permission
+        from sys_permission p
+        left join sys_role_permission rp on rp.permissionId = p.permissionId
+        where rp.roleId =
+        <foreach collection="list" item="roleId" open="(" close=")" separator=",">
+            #{roleId}
+        </foreach>
+    </select>
+</mapper>

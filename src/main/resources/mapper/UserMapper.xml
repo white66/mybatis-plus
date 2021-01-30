@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtst.mybatisplus.repository.UserMapper">
+
+    <select id="selectPageVo" resultType="com.rtst.mybatisplus.entity.User">
+        select id,user_name,pass_word,age,email,deleted,version,create_time,update_time
+                from user
+    </select>
+    <select id="findRoleByUserName" resultType="com.rtst.mybatisplus.entity.SysUserRole">
+        select r.roleId roleId from user u
+                left join sys_user_role  r on r.userId = u.id
+                where u.user_name = #{userName}
+    </select>
+</mapper>
